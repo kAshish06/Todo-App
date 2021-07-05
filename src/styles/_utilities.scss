@@ -1,5 +1,5 @@
-%text-elipssis {
-  white-space: nowrap;
+@mixin text-elipssis($wrap: nowrap) {
+  white-space: $wrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }

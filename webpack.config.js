@@ -18,6 +18,7 @@ module.exports = {
       filename: "styles.css",
     }),
   ],
+  devtool: "source-map",
   module: {
     rules: [
       {

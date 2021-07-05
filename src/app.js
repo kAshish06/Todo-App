@@ -27,6 +27,7 @@ const TodoAppWrapper = () => {
         {todos.map((todo) => (
           <TodoCard
             key={todo._id}
+            id={todo._id}
             title={todo.title}
             description={todo.description}
           />

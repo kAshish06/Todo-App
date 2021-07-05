@@ -7,23 +7,18 @@ import Tooltip from "@material-ui/core/Tooltip";
 import CloseIcon from "@material-ui/icons/Close";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
+
+import { deleteTodo } from "../services/todo.service";
 import "./TodoCard.scss";
 /** @jsx jsx */
-const TodoCard = ({ title, description }) => {
+const TodoCard = ({ id, title, description }) => {
+  function handleDeleteClick(id) {
+    deleteTodo(id).then(() => {
+      console.log(`Todo with id ${id} deleted successfully.`);
+    });
+  }
   return (
-    <Paper
-      elevation={3}
-      square
-      css={css`
-        display: flex;
-        flex-direction: column;
-        min-width: 250px;
-        max-width: 350px;
-        margin: 5px;
-        padding: 5px;
-        flex-grow: 1;
-      `}
-    >
+    <Paper elevation={3} square className="todo-card">
       <div
         css={css`
           text-align: right;
@@ -39,20 +34,18 @@ const TodoCard = ({ title, description }) => {
       <Tooltip title={title}>
         <div className="todo-title">{title}</div>
       </Tooltip>
-      <div
-        css={css`
-          padding: 10px 0;
-        `}
-      >
-        {description}
-      </div>
+      <div className="todo-description">{description}</div>
       <div
         css={css`
           text-align: right;
         `}
       >
         <EditIcon />
-        <DeleteIcon />
+        <DeleteIcon
+          onClick={() => {
+            handleDeleteClick(id);
+          }}
+        />
       </div>
     </Paper>
   );

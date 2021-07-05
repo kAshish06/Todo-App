@@ -1,6 +1,20 @@
 @import "../styles/utilities";
+
+.todo-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 250px;
+  max-width: 350px;
+  margin: 5px;
+  padding: 5px;
+  flex-grow: 1;
+}
 .todo-title {
-  @extend %text-elipssis;
-  //   @include text-elipssis;
+  @include text-elipssis;
   font-size: 22px;
+}
+
+.todo-description {
+  @include text-elipssis("wrap");
+  height: 100px;
 }
