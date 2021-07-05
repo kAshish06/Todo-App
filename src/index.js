@@ -1,13 +1,11 @@
 import React from "react";
 import { render } from "react-dom";
 
-import testService from "./services/test.service";
-
+import TodoAppWrapper from "./app";
+// import css from "./styles/style.css";
+import "./styles/index.scss";
 const App = () => {
-  testService().then((res) => {
-    console.log(res);
-  });
-  return <div>To do App</div>;
+  return <TodoAppWrapper />;
 };
 
 render(<App />, document.getElementById("root"));

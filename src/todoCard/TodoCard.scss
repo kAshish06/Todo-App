@@ -1,0 +1,6 @@
+@import "../styles/utilities";
+.todo-title {
+  @extend %text-elipssis;
+  //   @include text-elipssis;
+  font-size: 22px;
+}
