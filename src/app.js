@@ -1,21 +1,32 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Box from "@material-ui/core/Box";
 import { css, jsx } from "@emotion/react";
 
 import AddTodo from "./addTodo/AddTodo";
 import TodoCard from "./todoCard/TodoCard";
-import { getTodos } from "./services/todo.service";
+import TitleBar from "./titleBar/TitleBar";
+import { getTodos } from "./actionCreators/getTodoActionCreators";
+
 /** @jsx jsx */
 
 const TodoAppWrapper = () => {
-  const [todos, setTodos] = useState([]);
+  const dispatch = useDispatch();
+  const todos = useSelector((state) => state && state.todoSlice.todos);
   useEffect(() => {
-    getTodos().then((res) => setTodos(res.todos));
-  }, []);
+    dispatch(getTodos());
+  }, [dispatch]);
   return (
     <div>
-      <div>To do App</div>
-      <AddTodo />
+      <TitleBar />
+      <div
+        css={css`
+          display: flex;
+          justify-content: center;
+        `}
+      >
+        <AddTodo />
+      </div>
       <Box
         display="flex"
         css={css`

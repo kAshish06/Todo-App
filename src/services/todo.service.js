@@ -2,14 +2,14 @@ import { fetchGet, fetchPost, fetchDelete } from "../utilities/fetch";
 
 const api = "/api/v1/todos";
 
-export function getTodos() {
+export function getTodosApi() {
   return fetchGet(api);
 }
 
-export function addTodos(data) {
+export function addTodosApi(data) {
   return fetchPost(api, data);
 }
 
-export function deleteTodo(id) {
+export function deleteTodoApi(id) {
   return fetchDelete(`${api}/${id}`);
 }
