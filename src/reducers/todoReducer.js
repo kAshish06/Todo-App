@@ -6,6 +6,7 @@ import {
   ADD_TODO_SUCCESS,
   ADD_TODO_ERROR,
 } from "../actions";
+import { convertBase64MediaToBlob } from "../utils/commonUtils";
 
 const initialState = {
   isAddTodoInProgress: false,
@@ -22,9 +23,15 @@ export default function reducer(state = initialState, action) {
       };
     }
     case FETCH_TODOS_SUCCESS: {
+      const todos = action.payload.todos.map((todo) => {
+        if (todo.media) {
+          todo.soundBlob = convertBase64MediaToBlob(todo.media);
+        }
+        return todo;
+      });
       return {
         ...state,
-        todos: action.payload.todos,
+        todos: todos,
         isTodosLoading: false,
       };
     }

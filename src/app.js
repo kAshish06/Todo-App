@@ -41,6 +41,7 @@ const TodoAppWrapper = () => {
             id={todo._id}
             title={todo.title}
             description={todo.description}
+            soundBlob={todo.soundBlob}
           />
         ))}
       </Box>

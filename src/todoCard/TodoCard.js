@@ -13,6 +13,7 @@ import DeleteOutlinedIcon from "@material-ui/icons/DeleteOutline";
 import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
 
 import CardToolbar from "./CardToolbar";
+import AudioPlayer from "../player/AudioPlayer";
 import { StyleIconButton } from "../styledMuiComponents/StyledIconButton";
 import { deleteTodo } from "../actionCreators/deleteTodoActionCreators";
 import { getTodos } from "../actionCreators/getTodoActionCreators";
@@ -27,7 +28,7 @@ const CardBadge = withStyles((theme) => ({
   },
 }))(Badge);
 
-const TodoCard = ({ id, title, description }) => {
+const TodoCard = ({ id, title, description, soundBlob }) => {
   const [showCloseIcon, setShowCloseIcon] = useState(false);
   const [openToolbar, setOpenToolbar] = useState(false);
 
@@ -84,6 +85,9 @@ const TodoCard = ({ id, title, description }) => {
           <div className="todo-title">{title}</div>
         </Tooltip>
         <div className="todo-description">{description}</div>
+        {soundBlob && (
+          <AudioPlayer src={window.URL.createObjectURL(soundBlob)} />
+        )}
         <span
           css={css`
             align-self: flex-end;
