@@ -17,6 +17,15 @@ export function fetchPost(url, data) {
   }).then((res) => res.json());
 }
 
+export function fetchPatch(url, data) {
+  let postUrl = HOST_URL + url;
+  return fetch(postUrl, {
+    method: "PATCH",
+    headers,
+    body: JSON.stringify(data),
+  }).then((res) => res.json());
+}
+
 export function fetchDelete(url) {
   let deleteUrl = HOST_URL + url;
   return fetch(deleteUrl, {

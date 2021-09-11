@@ -14,6 +14,7 @@ import Divider from "@material-ui/core/Divider";
 import { css, jsx } from "@emotion/react";
 
 import AudioPlayer from "../player/AudioPlayer";
+import UpdateTodoFormModal from "../common/components/UpdateTodoFormModal";
 import { addTodo } from "../actionCreators/addTodoActionCreators";
 import { getTodos } from "../actionCreators/getTodoActionCreators";
 import { record } from "../recorder/recorder";
@@ -69,17 +70,18 @@ record(recordAudioChunks).then((res) => {
   recorder = res.recorder;
 });
 const AddTodo = () => {
+  const [openModal, setOpenModal] = useState(false);
   const [todoRecord, setTodoRecord] = useState(null);
   const [audioData, setAudioData] = useState(null);
   let classes = useStyles();
-  let [showDetailModal, setShowDetailModal] = useState(false);
   let [micOn, setMicOn] = useState(false);
   let [todoTitle, setTodoTitle] = useState("");
+  let [todoDescription, setTodoDescription] = useState("");
   const dispatch = useDispatch();
-  function save() {
+  function save(values) {
     const todo = {
-      title: todoTitle,
-      // description: todoDescription,
+      title: openModal ? values.title : todoTitle,
+      description: openModal ? values.description : todoDescription,
     };
     console.log(audioData);
     if (todoRecord) {
@@ -89,8 +91,9 @@ const AddTodo = () => {
       dispatch(getTodos());
     });
     setTodoTitle("");
-    // setTodoDescription("");
-    setShowDetailModal(false);
+    setTodoDescription("");
+    setTodoRecord(null);
+    setAudioData(null);
   }
   const handleTodoRecording = () => {
     if (!micOn) {
@@ -133,7 +136,7 @@ const AddTodo = () => {
           className={classes.iconButton}
           aria-label="expand for description"
           onClick={() => {
-            setShowDetailModal(!showDetailModal);
+            setOpenModal(true);
           }}
         >
           <FullExpand />
@@ -148,6 +151,22 @@ const AddTodo = () => {
           <AddIcon />
         </IconButton>
       </Paper>
+      {openModal && (
+        <UpdateTodoFormModal
+          openModal={openModal}
+          initialValues={{ title: todoTitle, description: todoDescription }}
+          onSubmit={(values) => {
+            save(values);
+          }}
+          onClose={() => {
+            setOpenModal(false);
+          }}
+          onCancel={() => {
+            setOpenModal(false);
+          }}
+          headerText="Create Todo"
+        />
+      )}
     </React.Fragment>
   );
 };

@@ -1,5 +1,5 @@
 @import "../styles/utilities";
-
+@import "../styles/variables";
 .todo-card {
   display: flex;
   flex-direction: column;
@@ -8,7 +8,7 @@
   margin: 10px;
   padding: 5px;
   flex-grow: 1;
-  border-radius: 7px;
+  // border-radius: 7px;
   justify-content: space-between;
 }
 .todo-title {
@@ -23,4 +23,9 @@
 .todo-card-icons {
   width: 15px;
   height: 15px;
+}
+
+.edit-todo-modal-body {
+  width: 30rem;
+  padding: 10px 20px;
 }

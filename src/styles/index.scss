@@ -1,5 +1,18 @@
 @import "./utilities";
+@import "./variables";
 
 body {
   background-color: #ededed;
 }
+.margin-horizontal {
+  margin: 0 10px !important;
+}
+
+.margin-vertical {
+  margin: 10px 0 !important;
+}
+
+.icon-color {
+  fill: currentColor;
+}
+/** overrides */

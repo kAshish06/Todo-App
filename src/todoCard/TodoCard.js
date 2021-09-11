@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { css, jsx } from "@emotion/react";
 import { useDispatch } from "react-redux";
@@ -14,9 +14,11 @@ import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
 
 import CardToolbar from "./CardToolbar";
 import AudioPlayer from "../player/AudioPlayer";
+import UpdateTodoFormModal from "../common/components/UpdateTodoFormModal";
 import { StyleIconButton } from "../styledMuiComponents/StyledIconButton";
 import { deleteTodo } from "../actionCreators/deleteTodoActionCreators";
 import { getTodos } from "../actionCreators/getTodoActionCreators";
+import { updateTodo } from "../actionCreators/updateTodoActionCreators";
 import "./TodoCard.scss";
 
 /** @jsx jsx */
@@ -31,6 +33,7 @@ const CardBadge = withStyles((theme) => ({
 const TodoCard = ({ id, title, description, soundBlob }) => {
   const [showCloseIcon, setShowCloseIcon] = useState(false);
   const [openToolbar, setOpenToolbar] = useState(false);
+  const [openModal, setOpenModal] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -49,7 +52,9 @@ const TodoCard = ({ id, title, description, soundBlob }) => {
   const toolbarItems = [
     {
       icon: EditOutlinedIcon,
-      onClickHandler: () => {},
+      onClickHandler: () => {
+        setOpenModal(true);
+      },
     },
     {
       icon: DeleteOutlinedIcon,
@@ -74,30 +79,57 @@ const TodoCard = ({ id, title, description, soundBlob }) => {
       </StyleIconButton>
     </Fade>
   );
+
+  const updateTodos = (values) => {
+    console.log(values);
+
+    dispatch(updateTodo(id, values)).then(() => {
+      dispatch(getTodos());
+    });
+  };
+
   return (
-    <CardBadge
-      badgeContent={showCloseIcon && closeButton}
-      onMouseEnter={() => setToolbarAndCloseIcons(true)}
-      onMouseLeave={() => setToolbarAndCloseIcons(false)}
-    >
-      <Paper elevation={3} square className="todo-card">
-        <Tooltip title={title}>
-          <div className="todo-title">{title}</div>
-        </Tooltip>
-        <div className="todo-description">{description}</div>
-        {soundBlob && (
-          <AudioPlayer src={window.URL.createObjectURL(soundBlob)} />
-        )}
-        <span
-          css={css`
-            align-self: flex-end;
-            height: 40px;
-          `}
-        >
-          {openToolbar && <CardToolbar id={id} toolbarItems={toolbarItems} />}
-        </span>
-      </Paper>
-    </CardBadge>
+    <>
+      <CardBadge
+        badgeContent={showCloseIcon && closeButton}
+        onMouseEnter={() => setToolbarAndCloseIcons(true)}
+        onMouseLeave={() => setToolbarAndCloseIcons(false)}
+      >
+        <Paper elevation={3} square className="todo-card">
+          <Tooltip title={title}>
+            <div className="todo-title">{title}</div>
+          </Tooltip>
+          <div className="todo-description">{description}</div>
+          {soundBlob && (
+            <AudioPlayer src={window.URL.createObjectURL(soundBlob)} />
+          )}
+          <span
+            css={css`
+              align-self: flex-end;
+              height: 40px;
+            `}
+          >
+            {openToolbar && <CardToolbar id={id} toolbarItems={toolbarItems} />}
+          </span>
+        </Paper>
+      </CardBadge>
+      {openModal && (
+        <UpdateTodoFormModal
+          openModal={openModal}
+          initialValues={{ title: title, description: description }}
+          onSubmit={(values) => {
+            updateTodos(values);
+          }}
+          onClose={() => {
+            setOpenModal(false);
+          }}
+          onCancel={() => {
+            setOpenModal(false);
+          }}
+          headerText="Edit Todo"
+        />
+      )}
+    </>
   );
 };
 

@@ -1,4 +1,9 @@
-import { fetchGet, fetchPost, fetchDelete } from "../utilities/fetch";
+import {
+  fetchGet,
+  fetchPost,
+  fetchPatch,
+  fetchDelete,
+} from "../utilities/fetch";
 
 const api = "/api/v1/todos";
 
@@ -12,4 +17,8 @@ export function addTodosApi(data) {
 
 export function deleteTodoApi(id) {
   return fetchDelete(`${api}/${id}`);
+}
+
+export function updateTodosApi(id, data) {
+  return fetchPatch(api, { id, data });
 }
