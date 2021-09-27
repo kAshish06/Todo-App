@@ -3,7 +3,7 @@ import React from "react";
 import { css, jsx } from "@emotion/react";
 
 import { StyleIconButton } from "../styledMuiComponents/StyledIconButton";
-import Fade from "@material-ui/core/Fade";
+import Fade from "@mui/material/Fade";
 import "./CardToolbar.scss";
 
 /** @jsx jsx */
@@ -18,7 +18,7 @@ const CardToolbar = ({ toolbarItems = [] }) => {
             aria-label="Edit todo"
             onClick={toolbarItem.onClickHandler}
           >
-            <toolbarItem.icon className="toolbar-icon" />
+            <toolbarItem.icon color="#007fff" />
           </StyleIconButton>
         ))}
       </div>

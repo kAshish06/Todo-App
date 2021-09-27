@@ -1,9 +1,10 @@
-import { withStyles } from "@material-ui/core/styles";
+import { withStyles } from "@mui/styles";
 
-import IconButton from "@material-ui/core/IconButton";
+import IconButton from "@mui/material/IconButton";
 
 export const StyleIconButton = withStyles((theme) => ({
   root: {
-    padding: "7px",
+    padding: "5px !important",
+    margin: "2px 3px !important",
   },
 }))(IconButton);

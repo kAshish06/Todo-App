@@ -1,6 +1,6 @@
 import React from "react";
 import { css, jsx } from "@emotion/react";
-import TextareaAutosize from "@material-ui/core/TextareaAutosize";
+import TextareaAutosize from "@mui/material/TextareaAutosize";
 /** @jsx jsx */
 const StyledTextareaAutosize = (props) => {
   return (

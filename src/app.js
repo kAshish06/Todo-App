@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Box from "@material-ui/core/Box";
+import Box from "@mui/material/Box";
 import { css, jsx } from "@emotion/react";
 
 import AddTodo from "./addTodo/AddTodo";

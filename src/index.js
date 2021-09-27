@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "react-dom";
-import { ThemeProvider } from "@material-ui/core/styles";
+import { ThemeProvider } from "@mui/material/styles";
 import { Provider } from "react-redux";
 
 import store from "./store";
@@ -12,7 +12,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
-        <TodoAppWrapper />;
+        <TodoAppWrapper />
       </ThemeProvider>
     </Provider>
   );

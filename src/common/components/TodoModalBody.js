@@ -1,6 +1,6 @@
 import React from "react";
 import { Form } from "formik";
-import Grid from "@material-ui/core/Grid";
+import Grid from "@mui/material/Grid";
 
 import Label from "./Label";
 import Input from "./Input";

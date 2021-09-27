@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 
-import IconButton from "@material-ui/core/IconButton";
-import PlayIcon from "@material-ui/icons/PlayArrow";
-import PauseIcon from "@material-ui/icons/Pause";
+import IconButton from "@mui/material/IconButton";
+import PlayIcon from "../icons/PlayIcon";
+import PauseIcon from "../icons/PauseIcon";
 
 const AudioPlayer = ({ src }) => {
   const [isPlay, setIsPlay] = useState(false);

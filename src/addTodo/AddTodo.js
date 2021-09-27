@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
-import InputBase from "@material-ui/core/InputBase";
-import TextField from "@material-ui/core/TextField";
-import IconButton from "@material-ui/core/IconButton";
-import AddIcon from "@material-ui/icons/Add";
-import Mic from "@material-ui/icons/Mic";
-import MicOff from "@material-ui/icons/MicOff";
-import FullExpand from "../icons/FullExpand";
-import Divider from "@material-ui/core/Divider";
+import { makeStyles } from "@mui/styles";
+import Paper from "@mui/material/Paper";
+import InputBase from "@mui/material/InputBase";
+import TextField from "@mui/material/TextField";
+import IconButton from "@mui/material/IconButton";
+import AddIcon from "../icons/AddIcon";
+import MicOnIcon from "../icons/MicOnIcon";
+import MicOffIcon from "../icons/MicOffIcon";
+import FullExpandIcon from "../icons/FullExpandIcon";
+import Divider from "@mui/material/Divider";
 import { css, jsx } from "@emotion/react";
 
 import AudioPlayer from "../player/AudioPlayer";
@@ -120,7 +120,7 @@ const AddTodo = () => {
     <React.Fragment>
       <Paper className={classes.addTodoCardContainer}>
         <IconButton onClick={handleTodoRecording}>
-          {micOn ? <Mic /> : <MicOff />}
+          {micOn ? <MicOnIcon /> : <MicOffIcon />}
         </IconButton>
         {todoRecord && <AudioPlayer src={todoRecord} />}
         <InputBase
@@ -139,7 +139,7 @@ const AddTodo = () => {
             setOpenModal(true);
           }}
         >
-          <FullExpand />
+          <FullExpandIcon />
         </IconButton>
         <Divider className={classes.divider} orientation="vertical" />
         <IconButton
@@ -148,7 +148,7 @@ const AddTodo = () => {
           aria-label="add to-do"
           onClick={save}
         >
-          <AddIcon />
+          <AddIcon width="24" height="24" />
         </IconButton>
       </Paper>
       {openModal && (

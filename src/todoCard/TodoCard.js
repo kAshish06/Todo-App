@@ -3,14 +3,15 @@ import PropTypes from "prop-types";
 import { css, jsx } from "@emotion/react";
 import { useDispatch } from "react-redux";
 
-import { withStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
-import Tooltip from "@material-ui/core/Tooltip";
-import CloseIcon from "@material-ui/icons/Close";
-import Badge from "@material-ui/core/badge";
-import Fade from "@material-ui/core/Fade";
-import DeleteOutlinedIcon from "@material-ui/icons/DeleteOutline";
-import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
+import { styled } from "@mui/material/styles";
+import Paper from "@mui/material/Paper";
+import Tooltip from "@mui/material/Tooltip";
+import CloseIcon from "../icons/CloseIcon";
+import Badge from "@mui/material/badge";
+import Fade from "@mui/material/Fade";
+import IconButton from "@mui/material/IconButton";
+import DeleteIcon from "../icons/DeleteIcon";
+import EditIcon from "../icons/EditIcon";
 
 import CardToolbar from "./CardToolbar";
 import AudioPlayer from "../player/AudioPlayer";
@@ -23,12 +24,12 @@ import "./TodoCard.scss";
 
 /** @jsx jsx */
 
-const CardBadge = withStyles((theme) => ({
-  badge: {
-    right: theme.spacing(1.3),
-    top: theme.spacing(1.3),
+const CardBadge = styled(Badge)((theme) => ({
+  "& .MuiBadge-badge": {
+    right: 10,
+    top: 10,
   },
-}))(Badge);
+}));
 
 const TodoCard = ({ id, title, description, soundBlob }) => {
   const [showCloseIcon, setShowCloseIcon] = useState(false);
@@ -51,32 +52,37 @@ const TodoCard = ({ id, title, description, soundBlob }) => {
 
   const toolbarItems = [
     {
-      icon: EditOutlinedIcon,
+      icon: EditIcon,
       onClickHandler: () => {
         setOpenModal(true);
       },
     },
     {
-      icon: DeleteOutlinedIcon,
+      icon: DeleteIcon,
       onClickHandler: handleDeleteClick,
     },
   ];
 
   const closeButton = (
     <Fade in={true} timeout={500}>
-      <StyleIconButton aria-label="Close todo" onClick={() => {}}>
-        <CloseIcon
+      <IconButton aria-label="Close todo" onClick={() => {}}>
+        <div
           css={css`
-            /* background: #00000066; */
+            // background: #00000066;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             background: #fff;
             color: #000000bf;
             width: 18px;
             height: 18px;
-            border-radius: 18px;
-            border: 2px solid #ccc;
+            border-radius: 24px;
+            border: 1px solid #ccc;
           `}
-        />
-      </StyleIconButton>
+        >
+          <CloseIcon width="24" height="24" />
+        </div>
+      </IconButton>
     </Fade>
   );
 
@@ -96,10 +102,12 @@ const TodoCard = ({ id, title, description, soundBlob }) => {
         onMouseLeave={() => setToolbarAndCloseIcons(false)}
       >
         <Paper elevation={3} square className="todo-card">
-          <Tooltip title={title}>
-            <div className="todo-title">{title}</div>
-          </Tooltip>
-          <div className="todo-description">{description}</div>
+          <div>
+            <Tooltip title={title}>
+              <div className="todo-title">{title}</div>
+            </Tooltip>
+            <div className="todo-description">{description}</div>
+          </div>
           {soundBlob && (
             <AudioPlayer src={window.URL.createObjectURL(soundBlob)} />
           )}

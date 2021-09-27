@@ -1,6 +1,6 @@
 import React from "react";
 import { css, jsx } from "@emotion/react";
-import InputLabel from "@material-ui/core/InputLabel";
+import InputLabel from "@mui/material/InputLabel";
 
 /** @jsx jsx */
 
@@ -8,7 +8,8 @@ const Label = (props) => {
   return (
     <InputLabel
       css={css`
-        padding: 10px 5px;
+        padding: 5px 10px;
+        marging: 5px 10px;
       `}
     >
       {props.children}

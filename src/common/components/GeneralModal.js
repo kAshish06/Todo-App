@@ -1,8 +1,8 @@
 import React from "react";
 
-import Modal from "@material-ui/core/Modal";
-import Typography from "@material-ui/core/Typography";
-import CloseIcon from "@material-ui/icons/Close";
+import Modal from "@mui/material/Modal";
+import Typography from "@mui/material/Typography";
+import CloseIcon from "../../icons/CloseIcon";
 
 import StyledButton from "./Button";
 import "./generalModal.scss";
