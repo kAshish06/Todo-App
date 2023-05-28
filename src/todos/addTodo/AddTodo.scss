@@ -1,0 +1,54 @@
+@import "../../styles/utilities";
+
+.add-todo-card {
+  position: relative;
+  z-index: 99999;
+  top: 50px;
+}
+
+.add-todo-card-container {
+  padding: 2px 4px;
+    display: flex;
+    align-items: center;
+    width: "60%";
+}
+
+.add-todo-input {
+  margin-left: 5px;
+    flex: 1;
+}
+
+
+.title-input {
+  margin-left: 5px;
+  padding-top: 5px;
+  display: flex;
+}
+
+
+.icon-button {
+  padding: 15px;
+}
+
+
+.divider {
+  height: 28px;
+    margin: 4px;
+}
+
+.text-field {
+  width: 100%;
+}
+
+.description-section {
+  margin-left: 5px;
+    margin-bottom: 5px;
+    padding-top: 5px;
+    flex: 1,
+}
+
+.semi-expanded-add-todo-container {
+  display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}

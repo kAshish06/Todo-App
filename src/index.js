@@ -1,21 +1,29 @@
 import React from "react";
-import { render } from "react-dom";
+import { createRoot } from "react-dom/client";
 import { ThemeProvider } from "@mui/material/styles";
 import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
 
 import store from "./store";
 import theme from "./theme";
-import TodoAppWrapper from "./app";
-// import css from "./styles/style.css";
+import TitleBar from "./titleBar/TitleBar";
+import AppRoutes from "./routes/routes";
+
 import "./styles/index.scss";
+
 const App = () => {
   return (
-    <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <TodoAppWrapper />
-      </ThemeProvider>
-    </Provider>
+    <BrowserRouter>
+      <Provider store={store}>
+        <ThemeProvider theme={theme}>
+          <TitleBar />
+          <AppRoutes />
+        </ThemeProvider>
+      </Provider>
+    </BrowserRouter>
   );
 };
 
-render(<App />, document.getElementById("root"));
+const domNode = document.getElementById("root");
+const root = createRoot(domNode);
+root.render(<App />);

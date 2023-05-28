@@ -1,0 +1,9 @@
+.left-menu-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #ddd;
+    .menu-option-container {
+        cursor: pointer;
+        margin-bottom: 1px;
+    }
+}

@@ -6,7 +6,7 @@ import {
   ADD_TODO_SUCCESS,
   ADD_TODO_ERROR,
 } from "../actions";
-import { convertBase64MediaToBlob } from "../utils/commonUtils";
+import { convertBase64MediaToBlob } from "../../utils/commonUtils";
 
 const initialState = {
   isAddTodoInProgress: false,

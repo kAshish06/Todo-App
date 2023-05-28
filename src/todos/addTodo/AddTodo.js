@@ -1,65 +1,22 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
-import { makeStyles } from "@mui/styles";
 import Paper from "@mui/material/Paper";
 import InputBase from "@mui/material/InputBase";
 import TextField from "@mui/material/TextField";
 import IconButton from "@mui/material/IconButton";
-import AddIcon from "../icons/AddIcon";
-import MicOnIcon from "../icons/MicOnIcon";
-import MicOffIcon from "../icons/MicOffIcon";
-import FullExpandIcon from "../icons/FullExpandIcon";
+import AddIcon from "../../icons/AddIcon";
+import MicOnIcon from "../../icons/MicOnIcon";
+import MicOffIcon from "../../icons/MicOffIcon";
+import FullExpandIcon from "../../icons/FullExpandIcon";
 import Divider from "@mui/material/Divider";
-import { css, jsx } from "@emotion/react";
 
-import AudioPlayer from "../player/AudioPlayer";
-import UpdateTodoFormModal from "../common/components/UpdateTodoFormModal";
+import AudioPlayer from "../../player/AudioPlayer";
+import UpdateTodoFormModal from "../../common/components/UpdateTodoFormModal";
 import { addTodo } from "../actionCreators/addTodoActionCreators";
 import { getTodos } from "../actionCreators/getTodoActionCreators";
-import { record } from "../recorder/recorder";
-import { convertToBase64String } from "../utils/commonUtils";
+import { record } from "../../recorder/recorder";
+import { convertToBase64String } from "../../utils/commonUtils";
 import "./AddTodo.scss";
-/** @jsx jsx */
-
-const useStyles = makeStyles((theme) => ({
-  addTodoCardContainer: {
-    padding: "2px 4px",
-    display: "flex",
-    alignItems: "center",
-    width: "60%",
-  },
-  addTodoInput: {
-    marginLeft: theme.spacing(1),
-    flex: 1,
-  },
-  titleInput: {
-    marginLeft: theme.spacing(1),
-    paddingTop: theme.spacing(1),
-    flex: 1,
-  },
-  iconButton: {
-    padding: 15,
-  },
-  divider: {
-    height: 28,
-    margin: 4,
-  },
-  textField: {
-    width: "100%",
-  },
-  descriptionSection: {
-    marginLeft: theme.spacing(1),
-    marginBottom: theme.spacing(1),
-    paddingTop: theme.spacing(1),
-    flex: 1,
-  },
-  semiExpandedAddTodoContainer: {
-    display: "flex",
-    flexDirection: "column",
-    flexGrow: 1,
-  },
-}));
 // let audioStream;
 let recorder;
 let audioChunks = [];
@@ -73,7 +30,6 @@ const AddTodo = () => {
   const [openModal, setOpenModal] = useState(false);
   const [todoRecord, setTodoRecord] = useState(null);
   const [audioData, setAudioData] = useState(null);
-  let classes = useStyles();
   let [micOn, setMicOn] = useState(false);
   let [todoTitle, setTodoTitle] = useState("");
   let [todoDescription, setTodoDescription] = useState("");
@@ -118,13 +74,13 @@ const AddTodo = () => {
   };
   return (
     <React.Fragment>
-      <Paper className={classes.addTodoCardContainer}>
+      <Paper className="add-todo-card-container">
         <IconButton onClick={handleTodoRecording}>
           {micOn ? <MicOnIcon /> : <MicOffIcon />}
         </IconButton>
         {todoRecord && <AudioPlayer src={todoRecord} />}
         <InputBase
-          className={classes.addTodoInput}
+          className="add-todo-input"
           placeholder="Add To-do"
           inputProps={{ "aria-label": "Add your to-do title here" }}
           value={todoTitle}
@@ -133,7 +89,7 @@ const AddTodo = () => {
           }}
         />
         <IconButton
-          className={classes.iconButton}
+          className="icon-button"
           aria-label="expand for description"
           onClick={() => {
             setOpenModal(true);
@@ -141,10 +97,10 @@ const AddTodo = () => {
         >
           <FullExpandIcon />
         </IconButton>
-        <Divider className={classes.divider} orientation="vertical" />
+        <Divider className="divider" orientation="vertical" />
         <IconButton
           color="primary"
-          className={classes.iconButton}
+          className="icon-button"
           aria-label="add to-do"
           onClick={save}
         >

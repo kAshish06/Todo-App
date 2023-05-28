@@ -5,7 +5,6 @@ import { css, jsx } from "@emotion/react";
 
 import AddTodo from "./addTodo/AddTodo";
 import TodoCard from "./todoCard/TodoCard";
-import TitleBar from "./titleBar/TitleBar";
 import { getTodos } from "./actionCreators/getTodoActionCreators";
 
 /** @jsx jsx */
@@ -18,7 +17,6 @@ const TodoAppWrapper = () => {
   }, [dispatch]);
   return (
     <div>
-      <TitleBar />
       <div
         css={css`
           display: flex;

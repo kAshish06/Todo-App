@@ -3,7 +3,7 @@ import {
   fetchPost,
   fetchPatch,
   fetchDelete,
-} from "../utilities/fetch";
+} from "../../utilities/fetch";
 
 const api = "/api/v1/todos";
 

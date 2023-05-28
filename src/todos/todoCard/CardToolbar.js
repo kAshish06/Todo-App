@@ -1,25 +1,21 @@
 import React from "react";
 
-import { css, jsx } from "@emotion/react";
-
-import { StyleIconButton } from "../styledMuiComponents/StyledIconButton";
+import IconButton from "@mui/material/IconButton";
 import Fade from "@mui/material/Fade";
 import "./CardToolbar.scss";
-
-/** @jsx jsx */
 
 const CardToolbar = ({ toolbarItems = [] }) => {
   return (
     <Fade in={true} timeout={500}>
       <div className="card-toolbar">
         {toolbarItems.map((toolbarItem, index) => (
-          <StyleIconButton
+          <IconButton
             key={index}
             aria-label="Edit todo"
             onClick={toolbarItem.onClickHandler}
           >
             <toolbarItem.icon color="#007fff" />
-          </StyleIconButton>
+          </IconButton>
         ))}
       </div>
     </Fade>

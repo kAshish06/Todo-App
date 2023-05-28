@@ -1,0 +1,13 @@
+.welcome-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    .welcome-app-cards-container {
+        display: flex
+    }
+    .card-container {
+        margin: 10px;
+        cursor: pointer;
+    }
+}
