@@ -11,7 +11,7 @@ import FullExpandIcon from "../../icons/FullExpandIcon";
 import Divider from "@mui/material/Divider";
 
 import AudioPlayer from "../../player/AudioPlayer";
-import UpdateTodoFormModal from "../../common/components/UpdateTodoFormModal";
+import UpdateTodoFormModal from "../UpdateTodoFormModal";
 import { addTodo } from "../actionCreators/addTodoActionCreators";
 import { getTodos } from "../actionCreators/getTodoActionCreators";
 import { record } from "../../recorder/recorder";

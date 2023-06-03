@@ -1,0 +1,23 @@
+.add-expanse-container {
+    display: flex;
+    justify-content: center;
+    .form-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 5px;
+        border-radius: 30px;
+    }
+    .input-box-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .title-input {
+        padding: 0 5px;
+    }
+    .amount-input {
+        padding: 0 10px;
+        border-left: 1px solid #c5c5c5;
+    }
+}

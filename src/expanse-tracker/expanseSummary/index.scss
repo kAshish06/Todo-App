@@ -1,0 +1,24 @@
+.expanse-summary-container {
+    display: flex;
+    margin:  15px 5px;
+    .summary-card {
+        display: flex;
+        padding: 15px;
+        margin: 0 5px;
+        .summary-item-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 3px;
+            margin: 0 5px;
+            .label {
+                color: #454545
+            }
+            .value {
+                font-size: 20px;
+                font-weight: 600
+            }
+        }
+    }
+}

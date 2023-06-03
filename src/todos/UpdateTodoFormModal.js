@@ -1,8 +1,7 @@
 import React from "react";
 import { Formik } from "formik";
 
-import TodoModalBody from "./TodoModalBody";
-import GeneralModal from "./GeneralModal";
+import GeneralModal from "../common/components/GeneralModal";
 
 const UpdateTodoFormModal = ({
   initialValues,
@@ -11,13 +10,14 @@ const UpdateTodoFormModal = ({
   onClose,
   onCancel,
   headerText,
+  body,
 }) => {
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmit}>
       {({ values, handleChange, handleSubmit }) => (
         <GeneralModal
           open={openModal}
-          body={<TodoModalBody values={values} handleChange={handleChange} />}
+          body={body(values, handleChange)}
           onClose={onClose}
           cancelHandler={onCancel}
           saveHandler={() => {

@@ -15,7 +15,8 @@ import EditIcon from "../../icons/EditIcon";
 
 import CardToolbar from "./CardToolbar";
 import AudioPlayer from "../../player/AudioPlayer";
-import UpdateTodoFormModal from "../../common/components/UpdateTodoFormModal";
+import UpdateTodoFormModal from "../UpdateTodoFormModal";
+import TodoModalBody from "../TodoModalBody";
 import { deleteTodo } from "../actionCreators/deleteTodoActionCreators";
 import { getTodos } from "../actionCreators/getTodoActionCreators";
 import { updateTodo } from "../actionCreators/updateTodoActionCreators";
@@ -134,6 +135,9 @@ const TodoCard = ({ id, title, description, soundBlob }) => {
             setOpenModal(false);
           }}
           headerText="Edit Todo"
+          body={(values, handleChange) => (
+            <TodoModalBody values={values} handleChange={handleChange} />
+          )}
         />
       )}
     </>

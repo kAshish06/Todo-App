@@ -22,7 +22,7 @@ export const addTodo = (todo) => {
     dispatch(addTodoRequested());
     return addTodosApi(todo)
       .then((res) => {
-        dispatch(addTodoSuccess);
+        dispatch(addTodoSuccess());
       })
       .catch((e) => {
         dispatch(addTodoError());

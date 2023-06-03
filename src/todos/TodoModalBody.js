@@ -2,8 +2,8 @@ import React from "react";
 import { Form } from "formik";
 import Grid from "@mui/material/Grid";
 
-import Label from "./Label";
-import Input from "./Input";
+import Label from "../common/components/Label";
+import Input from "../common/components/Input";
 
 const TodoModalBody = ({ values, handleChange }) => {
   return (
