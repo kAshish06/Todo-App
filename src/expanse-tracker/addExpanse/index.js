@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import IconButton from "@mui/material/IconButton";
 import InputBase from "@mui/material/InputBase";
@@ -8,27 +8,24 @@ import Paper from "@mui/material/Paper";
 import { Formik } from "formik";
 
 import AddIcon from "../../icons/AddIcon";
-import { AddExpanse as addExpanse } from "../actionCreators/addExpanseActionCreators";
-import { getExpanses } from "../actionCreators/getExpansesActionCreators";
+
+import addExpanseQuery from "../query/addExpanses";
 
 import "./index.scss";
 
 export const AddExpanse = () => {
-  const [addExpanseFormOpen, setAddExpanseFormOpen] = useState(false);
-  const dispatch = useDispatch();
-  const handleAddClick = (handleSubmit) => {
-    if (!addExpanseFormOpen) {
-      setAddExpanseFormOpen(true);
+  const queryClient = useQueryClient();
+  const addExpanseMutation = useMutation(addExpanseQuery, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("expanses");
+    },
+  });
+  const onSubmit = (values) => {
+    if (!values.tittle && !values.amount) {
       return;
     }
-    setAddExpanseFormOpen(false);
-    handleSubmit();
-  };
-  const onSubmit = (values) => {
     const expanse = { title: values.title, amount: Number(values.amount) };
-    dispatch(addExpanse(expanse)).then(() => {
-      dispatch(getExpanses());
-    });
+    addExpanseMutation.mutate(expanse);
   };
   return (
     <div className="add-expanse-container">
@@ -36,31 +33,30 @@ export const AddExpanse = () => {
         {({ values, handleChange, handleSubmit }) => {
           return (
             <Paper className="form-container">
-              {addExpanseFormOpen && (
-                <div className="input-box-container">
-                  <InputBase
-                    placeholder="Expanse Item"
-                    type="text"
-                    name="title"
-                    onChange={handleChange}
-                    value={values.title}
-                    className="title-input"
-                  />
-                  <InputBase
-                    placeholder="Amount"
-                    type="text"
-                    name="amount"
-                    onChange={handleChange}
-                    value={values.amount}
-                    className="amount-input"
-                  />
-                </div>
-              )}
+              <div className="input-box-container">
+                <InputBase
+                  placeholder="Expanse Item"
+                  type="text"
+                  name="title"
+                  onChange={handleChange}
+                  value={values.title}
+                  className="title-input"
+                />
+                <InputBase
+                  placeholder="Amount"
+                  type="text"
+                  name="amount"
+                  onChange={handleChange}
+                  value={values.amount}
+                  className="amount-input"
+                />
+              </div>
               <IconButton
                 color="primary"
                 className="icon-button"
                 aria-label="add expanse"
-                onClick={() => handleAddClick(handleSubmit)}
+                onClick={handleSubmit}
+                disabled={!values.title && !values.amount}
               >
                 <AddIcon width="36" height="36" />
               </IconButton>

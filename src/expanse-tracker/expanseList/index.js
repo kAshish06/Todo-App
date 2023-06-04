@@ -1,15 +1,25 @@
-import React, { useEffect } from "react";
+import React from "react";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { DataGrid } from "@mui/x-data-grid";
 import Paper from "@mui/material/Paper";
+import IconButton from "@mui/material/IconButton";
 import { DateTime } from "luxon";
 
-import { getExpanses } from "../actionCreators/getExpansesActionCreators";
+import DeleteIcon from "../../icons/DeleteIcon";
+import getExpansesQuery from "../query/getExpanses";
+import { deleteExpanseQuery } from "../query/deleteExpanse";
 
 import "./index.scss";
 
 export const ExpanseList = () => {
+  const queryClient = useQueryClient();
+  const deleteExapnseMutation = useMutation(deleteExpanseQuery, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("expanses");
+    },
+  });
+
   const columns = [
     { field: "title", headerName: "Ttile", flex: 5 },
     { field: "amount", headerName: "Amount", flex: 2 },
@@ -22,16 +32,36 @@ export const ExpanseList = () => {
       flex: 3,
       editable: true,
     },
+    {
+      field: "",
+      headerName: "Actions",
+      renderCell: ({ row }) => {
+        return (
+          <IconButton
+            key={row._id}
+            aria-label="Delete expanse"
+            onClick={() => {
+              deleteExapnseMutation.mutate(row._id);
+            }}
+          >
+            <DeleteIcon />
+          </IconButton>
+        );
+      },
+      flex: 2,
+    },
   ];
-  const expanses = useSelector((state) => state.expansesSlice.expanses);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getExpanses()).then(() => {});
-  }, []);
+  const { isLoading, data } = useQuery(["expanses"], getExpansesQuery);
 
   return (
     <Paper className="expanse-list-container">
-      <DataGrid rows={expanses} columns={columns} getRowId={(row) => row._id} />
+      {!isLoading && (
+        <DataGrid
+          rows={data.expanses}
+          columns={columns}
+          getRowId={(row) => row._id}
+        />
+      )}
     </Paper>
   );
 };

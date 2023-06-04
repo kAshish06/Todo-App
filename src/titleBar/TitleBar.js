@@ -14,7 +14,6 @@ const TitleBar = () => {
   const [leftDrawerOpen, setLeftDrawerOpen] = useState(false);
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  console.log(pathname);
   return (
     <div position="static" className="app-bar-container">
       <IconButton

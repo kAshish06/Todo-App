@@ -14,3 +14,7 @@ export function getExpansesApi() {
 export function addExpanseApi(data) {
   return fetchPost(api, data);
 }
+
+export function deleteExpanseApi(id) {
+  return fetchDelete(`${api}/${id}`);
+}
