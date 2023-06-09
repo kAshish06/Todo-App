@@ -30,7 +30,7 @@ export const AddExpanse = () => {
   return (
     <div className="add-expanse-container">
       <Formik initialValues={{ title: "", amount: "" }} onSubmit={onSubmit}>
-        {({ values, handleChange, handleSubmit }) => {
+        {({ values, handleChange, resetForm }) => {
           return (
             <Paper className="form-container">
               <div className="input-box-container">
@@ -55,7 +55,10 @@ export const AddExpanse = () => {
                 color="primary"
                 className="icon-button"
                 aria-label="add expanse"
-                onClick={handleSubmit}
+                onClick={() => {
+                  onSubmit(values);
+                  resetForm();
+                }}
                 disabled={!values.title && !values.amount}
               >
                 <AddIcon width="36" height="36" />

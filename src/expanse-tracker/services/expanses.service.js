@@ -18,3 +18,7 @@ export function addExpanseApi(data) {
 export function deleteExpanseApi(id) {
   return fetchDelete(`${api}/${id}`);
 }
+
+export function updateExpanseApi(id, data) {
+  return fetchPatch(`${api}/${id}`, { data });
+}

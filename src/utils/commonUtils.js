@@ -32,3 +32,16 @@ export function convertToBase64String(blob) {
   });
   return promise;
 }
+
+export function unpackSnakeCase(str) {
+  if (!str) return "";
+  let strParts = str.split("_");
+  let capitalisedStrParts = strParts.map((part) => capitalise(part));
+  return capitalisedStrParts.join(" ");
+}
+
+export function capitalise(str) {
+  if (!str) return "";
+  let capitalFirstChar = str[0].toUpperCase();
+  return capitalFirstChar + str.slice(1, str.length);
+}

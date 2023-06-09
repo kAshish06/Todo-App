@@ -4,6 +4,7 @@ import Welcome from "../welcome/Welcome";
 import TodoAppWrapper from "../todos";
 import ExpanseTrackerWrapper from "../expanse-tracker";
 import SettingsWrapper from "../Settings";
+import CategoriesWrapper from "../categories";
 
 export const RoutePathComponentMap = {
   "/": {
@@ -37,5 +38,13 @@ export const RoutePathComponentMap = {
     visibleOnWelcome: true,
     visibleOnLeftMenu: true,
     titleBarLabel: "Settings",
+  },
+  "/categories": {
+    component: <CategoriesWrapper />,
+    welcomeCardLabel: "Categories",
+    leftMenuLabel: "Categories",
+    visibleOnLeftMenu: true,
+    visibleOnWelcome: true,
+    titleBarLabel: "Categories",
   },
 };

@@ -1,0 +1,23 @@
+.add-category-container {
+  display: flex;
+  justify-content: center;
+  .category-form-container {
+    padding: 5px;
+    .action-button-container {
+      text-align: right;
+      .action-button {
+        margin: 10px;
+      }
+    }
+    .input-box-container {
+      width: 300px;
+      margin: 15px 10px;
+      .name-input {
+        width: 100%;
+      }
+      .used-in-input {
+        width: 100%;
+      }
+    }
+  }
+}
