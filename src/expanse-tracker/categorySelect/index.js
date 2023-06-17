@@ -8,6 +8,7 @@ export const CategorySelect = ({
   initialValue = "",
   categories = [],
   handleCategorySubmit = () => {},
+  className = "",
 }) => {
   const [categoryValue, setCategoryValue] = useState(initialValue);
   const handleChange = (e) => {
@@ -15,11 +16,13 @@ export const CategorySelect = ({
   };
   return (
     <Select
-      className="category-select"
+      className={`category-select ${className}`}
       name="category"
       value={categoryValue}
       onChange={handleChange}
       onBlur={handleCategorySubmit}
+      variant="standard"
+      disableUnderline={true}
     >
       {categories.map((category) => (
         <MenuItem key={category.value} value={category.value}>

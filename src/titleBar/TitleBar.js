@@ -14,6 +14,8 @@ const TitleBar = () => {
   const [leftDrawerOpen, setLeftDrawerOpen] = useState(false);
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const pathSplits = pathname?.split("/");
+  const rootPath = "/" + pathSplits[1];
   return (
     <div position="static" className="app-bar-container">
       <IconButton
@@ -34,8 +36,9 @@ const TitleBar = () => {
         className="app-title"
       >
         {`Utilities${
-          RoutePathComponentMap[pathname].titleBarLabel &&
-          ` - ${RoutePathComponentMap[pathname].titleBarLabel}`
+          RoutePathComponentMap[rootPath]?.titleBarLabel
+            ? ` - ${RoutePathComponentMap[rootPath].titleBarLabel}`
+            : ""
         }`}
       </Typography>
       <LeftMenu

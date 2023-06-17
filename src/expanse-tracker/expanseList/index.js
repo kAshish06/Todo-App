@@ -37,7 +37,6 @@ export const ExpanseList = () => {
     },
   });
   const handleCategorySubmit = (id, e) => {
-    console.log(e);
     updateExpanseMutation.mutate({ id, payload: { category: e.target.value } });
   };
 

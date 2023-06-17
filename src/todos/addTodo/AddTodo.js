@@ -39,7 +39,6 @@ const AddTodo = () => {
       title: openModal ? values.title : todoTitle,
       description: openModal ? values.description : todoDescription,
     };
-    console.log(audioData);
     if (todoRecord) {
       todo.media = audioData;
     }
@@ -57,7 +56,6 @@ const AddTodo = () => {
       recorder.onstop;
     } else {
       recorder.stop();
-      console.log(audioChunks);
       const audioBlob = new Blob(audioChunks, {
         type: "audio/ogg; codecs=opus",
       });

@@ -87,8 +87,6 @@ const TodoCard = ({ id, title, description, soundBlob }) => {
   );
 
   const updateTodos = (values) => {
-    console.log(values);
-
     dispatch(updateTodo(id, values)).then(() => {
       dispatch(getTodos());
     });

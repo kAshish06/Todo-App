@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import IconButton from "@mui/material/IconButton";
 import InputBase from "@mui/material/InputBase";
@@ -8,12 +8,18 @@ import Paper from "@mui/material/Paper";
 import { Formik } from "formik";
 
 import AddIcon from "../../icons/AddIcon";
+import { CategorySelect } from "../categorySelect";
 
 import addExpanseQuery from "../query/addExpanses";
+import getCategoriesQuery from "../query/getCategories";
 
 import "./index.scss";
 
 export const AddExpanse = () => {
+  const { isLoading: isCategoriesLoading, data: categoriesData } = useQuery(
+    ["categories"],
+    getCategoriesQuery
+  );
   const queryClient = useQueryClient();
   const addExpanseMutation = useMutation(addExpanseQuery, {
     onSuccess: () => {
@@ -24,12 +30,19 @@ export const AddExpanse = () => {
     if (!values.tittle && !values.amount) {
       return;
     }
-    const expanse = { title: values.title, amount: Number(values.amount) };
+    const expanse = {
+      title: values.title,
+      amount: Number(values.amount),
+      category: values.category,
+    };
     addExpanseMutation.mutate(expanse);
   };
   return (
     <div className="add-expanse-container">
-      <Formik initialValues={{ title: "", amount: "" }} onSubmit={onSubmit}>
+      <Formik
+        initialValues={{ title: "", amount: "", category: "" }}
+        onSubmit={onSubmit}
+      >
         {({ values, handleChange, resetForm }) => {
           return (
             <Paper className="form-container">
@@ -50,6 +63,14 @@ export const AddExpanse = () => {
                   value={values.amount}
                   className="amount-input"
                 />
+                {!isCategoriesLoading && (
+                  <CategorySelect
+                    initialValue={values.category}
+                    categories={categoriesData.categories}
+                    handleCategorySubmit={(e) => handleChange(e)}
+                    className="category"
+                  />
+                )}
               </div>
               <IconButton
                 color="primary"

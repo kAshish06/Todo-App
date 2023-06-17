@@ -3,6 +3,8 @@ import React from "react";
 import Welcome from "../welcome/Welcome";
 import TodoAppWrapper from "../todos";
 import ExpanseTrackerWrapper from "../expanse-tracker";
+import ExpanseList from "../expanse-tracker/expanseList";
+import ExpanseSummary from "../expanse-tracker/expanseSummary";
 import SettingsWrapper from "../Settings";
 import CategoriesWrapper from "../categories";
 
@@ -30,6 +32,17 @@ export const RoutePathComponentMap = {
     visibleOnWelcome: true,
     visibleOnLeftMenu: true,
     titleBarLabel: "Expanse Tracker",
+    children: {
+      "/": {
+        component: <ExpanseSummary />,
+      },
+      stats: {
+        component: <ExpanseSummary />,
+      },
+      list: {
+        component: <ExpanseList />,
+      },
+    },
   },
   "/settings": {
     component: <SettingsWrapper />,
